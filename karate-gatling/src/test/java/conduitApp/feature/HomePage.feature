@@ -25,3 +25,4 @@
         Then status 200
         And match response.articles =='#[10]'
         And match response.articlesCount == 251
+
