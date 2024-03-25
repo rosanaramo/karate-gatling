@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import com.intuit.karate.junit5.Karate;
 import org.junit.jupiter.api.Test;
 
-@KarateOptions(tags = {"@Rosana", "@F2"} )
 class ConduitTest {
 
     @Test
