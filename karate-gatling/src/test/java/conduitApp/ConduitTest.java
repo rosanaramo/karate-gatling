@@ -25,6 +25,7 @@ class ConduitTest {
     // mvn test -Dtest=ConduitTest#testTags
 
     // Running with karate options : mvn test -Dkarate.options="--tags @debug"
+    // mvn test -Dkarate.options="--tags @debug" -Dkarate.env="dev"
     // use karate tag @ignore to ignore features or scenarios
 
     //Use the tag @skipme on feature or scenario to run all scenarios except the on with the tag skipme
