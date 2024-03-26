@@ -1,28 +1,43 @@
-# https://conduit.productionready.io/api/tags
-
-  Feature: Tests for the home page
+Feature: Tests for the home page
 
     Background: Define URL
-      Given url 'https://conduit.productionready.io/api'
+#      Given url 'https://conduit.productionready.io/api'
+      # https://conduit.productionready.io/api/tags
+
+      Given url  apiUrl
 
 
-#      Scenario: Get all the tags
-#      Given path 'tags'
-#      When method Get
-#      Then status 200
-#      And match response.tags contains ['est','ipsum']
-#      And match response.tags !contains 'estou'
-#      And match response.tags == "#array"
-#      And match each response.tags == "#string"
 
-    #Using a object of parameters or single parameter
-      Scenario: Get 10 scenarios from the page
+      Scenario: Get all the tags
+      Given path 'tags'
+      When method Get
+      Then status 200
+      And match response.tags contains ['Git','GitHub']
+      And match response.tags contains any ['Git','GitHub']
+      And match response.tags !contains 'twitter'
+#      And match response.tags !contains only 'GitHub'
+#      And match response.tags !contains only [GitHub, YouTube]
+      And match response.tags == "#array"
+      And match each response.tags == "#string"
+
+  @debug
+  Scenario: Get 10 scenarios from the page
+        #Using a object of parameters or single parameter
         #Given param limit = 10
         #Given param offset = 0
         Given path 'articles'
         Given params {limit:10, offset:0}
         And method Get
         Then status 200
-        And match response.articles =='#[10]'
-        And match response.articlesCount == 251
-
+        And match response.articles != '#[50]'
+        And match response.articlesCount != 250
+#        And match response == {"articles": "#array", "articlesCount" ==500}
+        And match response.articles[0].createdAt contains '2024'
+    #asterisk key means each object on json
+        And match response.articles[*].favoritesCount contains 0
+#    at least on of the objects should contains null
+        And match response.articles[*].author.bio contains null
+#    karate will find all bios no matter where they are located
+        And match response..bio contains null
+        And match each response.articles[*].author.following == false
+        And match each response..following == false
