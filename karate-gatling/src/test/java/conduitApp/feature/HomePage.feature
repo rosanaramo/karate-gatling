@@ -1,9 +1,10 @@
 Feature: Tests for the home page
 
-    Background: Define URL
+    Background: Pre conditions
      # Given url 'https://conduit.productionready.io/api'
      # https://conduit.productionready.io/api/tags
       Given url  apiUrl
+      * def isValidTime = read ('classpath:/helpers/timeValidator.js')
 
       Scenario: Get all the tags
         Given path 'tags'
@@ -49,9 +50,8 @@ Feature: Tests for the home page
 #    if I change the double for a single hash sign I will face an error because some values are null
         And match each response..bio == '##string"
 
-  @debug
+
         Scenario: Testing schema validation
-          * def isValidTime = read ('classpath:/helpers/timeValidator.js')
           Given path 'articles'
           And params {limit:10, offset:0}
           And method Get

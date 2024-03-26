@@ -1,21 +1,48 @@
-@ignore
 Feature: Sign un new user
 
-Background: Define URL
+Background: Preconditions
  Given url  apiUrl
+  * def dataGenerator = Java.type('helpers.DataGenerator')
 
   Scenario: New user Sign Up
-    Given def userData = {"email":"karateUser259Test.com","username":"test59"}
-    And path 'users'
+    * def randomEmail = dataGenerator.getRandomEmail()
+    * def randomUsername = dataGenerator.getRandomUsername()
+    Given path 'users'
     And request
     """
     {
       "user": {
-          "email": #(userData.email),
-          "username": #(userData.username),
+          "email": #(randomEmail),
+          "username": #(randomUsername),
           "password": "8988fau"
        }
     }
     """
     When method Post
     Then status 201
+    And match response ==
+    """
+    {
+        "user": {
+            "id": "#number",
+            "email": #(randomEmail),
+            "username": #(randomUsername),
+            "bio": "##string",
+            "image": "#notnull",
+            "token": "#string"
+          }
+    }
+    """
+
+  @debug
+  Scenario: Testing non static method from java class
+      * def jsFunction =
+      """
+        function(){
+          var DataGenerator = Java.type('helpers.DataGenerator')
+          var generator = new DataGenerator()
+          return generator.notStaticMethod()
+        }
+      """
+      * def variable = call jsFunction
+      * print variable
