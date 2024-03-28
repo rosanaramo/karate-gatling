@@ -28,6 +28,9 @@
     And match response == <errorResponse>
 
     Examples:
-      |email                    |password      |username          |errorResponse|
-      |#(randomEmail)           |"KARATE0098"  |"Karate09983"     |{ "errors": { "username": [ "has already been taken"] }} |
-      |"testkarate009@gmail.com"|"KARATE0098"  |randomUsername     |{ "errors": { "username": [ "has already been taken"] }} |
+      |email                    |password      |username             |errorResponse|
+      |#(randomEmail)           |"KARATE0098"  |"Karate09983"        |{ "errors": { "username": [ "has already been taken"] }} |
+      |"testkarate009@gmail.com"|"**(*&Taljfla"|#(randomUsername)    |{ "errors": { "email": [ "has already been taken"] }}    |
+      |""                       |")-(*&&idahft"|#(randomUsername)    |{"errors":{"email":["can't be blank"]}}                  |
+      |#(randomEmail)           |"0po9iuuu$%ˆ" |""                   |{"errors": { "username": ["can't be blank"]}}            |
+      |#(randomEmail)           |""            |#(randomUsername)    |{"errors": { "password": ["can't be blank"]}}            |
