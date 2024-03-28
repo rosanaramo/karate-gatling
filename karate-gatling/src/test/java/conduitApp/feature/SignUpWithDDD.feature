@@ -3,16 +3,13 @@
     Background: Preconditions
       * def dataGenerator = Java.type('helpers.DataGenerator')
       * def randomEmail = dataGenerator.getRandomEmail()
+      * url apiUrl
 
-
-
-    @debug
     Scenario Outline: Validate Sign Up error messages
     * def randomEmail = dataGenerator.getRandomEmail()
     * def randomUsername = dataGenerator.getRandomUsername()
 
     Given path 'users'
-    Given url apiUrl
     And request
     """
     {
