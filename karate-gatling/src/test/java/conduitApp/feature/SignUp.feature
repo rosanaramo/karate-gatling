@@ -34,7 +34,7 @@ Background: Preconditions
     }
     """
 
-  @debug
+
   Scenario: Testing non static method from java class
       * def jsFunction =
       """
@@ -46,3 +46,4 @@ Background: Preconditions
       """
       * def variable = call jsFunction
       * print variable
+
