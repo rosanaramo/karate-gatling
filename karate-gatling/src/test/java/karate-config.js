@@ -20,6 +20,8 @@ function fn() {
     config.userEmail = 'rosanatest2@gmail.com'
     config.userPassword = 'iufaufafugu'
   }
+  // Using call single to call after all features
+  // if I use call instead of call single the token will be created for every scenario
   var accessToken = karate.callSingle('classpath:helpers/CreateToken.feature',config).authToken
   karate.configure('headers',{Authorization:accessToken})
   return config;
