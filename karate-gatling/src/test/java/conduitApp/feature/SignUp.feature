@@ -1,5 +1,4 @@
 Feature: Sign un new user
-
 Background: Preconditions
  Given url  apiUrl
   * def dataGenerator = Java.type('helpers.DataGenerator')
