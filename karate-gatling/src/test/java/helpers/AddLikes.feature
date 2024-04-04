@@ -5,7 +5,7 @@ Feature: Add likes
 
   Scenario: add likes
     Given  path 'articles', slug, 'favorite'
-    And request{}
+    And request {}
     When method Post
     Then status 200
     * def likesCount = response.article.favoritesCount

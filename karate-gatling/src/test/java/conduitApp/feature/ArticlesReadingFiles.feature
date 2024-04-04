@@ -1,4 +1,4 @@
-Feature: Articles
+Feature: Articles Reading Files
 
   Background: Pre conditions
     * url  apiUrl
