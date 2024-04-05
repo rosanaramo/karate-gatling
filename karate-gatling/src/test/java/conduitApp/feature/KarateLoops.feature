@@ -1,4 +1,3 @@
-@debug
 Feature: Karate loops
 
   Scenario: Adding articles in loop
